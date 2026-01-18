@@ -3,10 +3,13 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing import image
 import numpy as np
 from PIL import Image
+import os
 
 @st.cache_resource
 def load_model():
-    model = tf.keras.models.load_model('pneumonia_model.h5')
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    model_path = os.path.join(current_dir,'pneumonia_model.h5')
+    model = tf.keras.models.load_model(model_path)
     return model
 
 model = load_model()
